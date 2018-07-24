@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup Label="Build">
-    <TargetFrameworks Condition="'$(NETCore)' == 'true' AND '$(NETFramework)' == 'true'">netcoreapp1.1;net461</TargetFrameworks>
-    <TargetFramework Condition="'$(NETCore)' == 'true' AND '$(NETFramework)' != 'true'">netcoreapp1.1</TargetFramework>
-    <TargetFramework Condition="'$(NETCore)' != 'true' AND '$(NETFramework)' == 'true'">net461</TargetFramework>
+    <TargetFrameworks Condition="'$(Framework)' != ''">PROJECT-TARGET-FRAMEWORKS</TargetFrameworks>
+    <TargetFrameworks Condition="'$(Framework)' == ''">netcoreapp2.1</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup Label="Package">
@@ -15,14 +14,34 @@
     <Copyright>Copyright © PROJECT-AUTHOR. All rights Reserved</Copyright>
   </PropertyGroup>
 
-  <ItemGroup Label="Package References">
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" Condition="'$(IncludeApplicationInsights)' == 'True'"  />
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="1.1.2" Condition="'$(CORS)' == 'True'"  />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="1.1.2" Condition="'$(DataAnnotations)' == 'True'"  />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ApiExplorer" Version="1.1.2" Condition="'$(ApiExplorer)' == 'True'"  />
+  <ItemGroup Label="Package References" Condition="'$(TargetFramework)' == 'netcoreapp1.1' Or '$(TargetFramework)' == 'net452' Or '$(TargetFramework)' == 'net46' ">
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.*" Condition="'$(IncludeApplicationInsights)' == 'True'"  />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="1.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="1.1.*" Condition="'$(CORS)' == 'True'"  />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="1.1.*" Condition="'$(DataAnnotations)' == 'True'"  />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ApiExplorer" Version="1.1.*" Condition="'$(ApiExplorer)' == 'True'"  />
+  </ItemGroup>
+
+  <ItemGroup Label="Package References" Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.*" Condition="'$(IncludeApplicationInsights)' == 'True'"  />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.0.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="2.0.*" Condition="'$(CORS)' == 'True'"  />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.0.*" Condition="'$(DataAnnotations)' == 'True'"  />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ApiExplorer" Version="2.0.*" Condition="'$(ApiExplorer)' == 'True'"  />
+  </ItemGroup>
+
+  <ItemGroup Label="Package References" Condition="'$(TargetFramework)' == 'netcoreapp2.1' Or '$(TargetFramework)' == 'net461' Or '$(TargetFramework)' == 'net462' Or '$(TargetFramework)' == 'net47'  Or '$(TargetFramework)' == 'net471' Or '$(TargetFramework)' == 'net472'">
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.*" Condition="'$(IncludeApplicationInsights)' == 'True'"  />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="2.1.*" Condition="'$(CORS)' == 'True'"  />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.1.*" Condition="'$(DataAnnotations)' == 'True'"  />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ApiExplorer" Version="2.1.*" Condition="'$(ApiExplorer)' == 'True'"  />
   </ItemGroup>
 
 </Project>
